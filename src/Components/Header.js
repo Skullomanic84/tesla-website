@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 import CloseIcon from '@material-ui/icons/Close';
+import { selectCars } from '../features/Cars/CarSlice';
+import { useSelector } from 'react-redux';
 
 function Header() {
 
     const[burgerStatus, setBurgerStatus] = useState(false);
-
+    const cars = useSelector(selectCars)
+    console.log(cars);
     return (
         <Container>
-            <a>
+            <a href="#">
                 <img src="/images/logo.svg" alt="tesla brand" />
             </a>
 
             <Menu>
-                <a href="#">Model S</a>
-                <a href="#">Model 3</a>
-                <a href="#">Model X</a>
-                <a href="#">Model Y</a>
-                <a href="#">Solar Roof</a>
-                <a href="#">Solar Panels</a>
+                {cars && cars.map((car, index)=>(
+                  <a key={index} href="#">{car}</a>  
+                ))}
             </Menu>
 
             <RightNav>
@@ -72,6 +72,7 @@ const Container = styled.div `
     left: 0;
     right: 0;
     z-index: 1;
+    text-transform: uppercase;
 `
 const Menu = styled.div `
    display: flex;

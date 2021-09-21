@@ -91,4 +91,7 @@ const DownArrow = styled.img `
     animation: animateDown infinite 1.5s;
 `
 
-const Button = styled.div ``
+const Button = styled.div `
+    display: flex;
+    flex-direction: column;
+`
